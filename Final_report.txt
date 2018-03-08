@@ -1,0 +1,33 @@
+n-body gravitational modeling
+==============================
+Jon Hays; e30 final project
+==============================
+
+ The purpose of this project is to simulate the motion of n-gravitational bodies
+ in space over an assigned time interval. This is an extension of the earth-moon
+ simulation in class, but is designed to be much larger scale. The program can take
+ as many bodies as the computer's processor can handle efficiently (yet to be tested). 
+ My hopes would be that the program can handle enough bodies to (very roughly) simulate the formation of
+ a galaxy, given enough ephemeris data. For this to be possible I would 
+ have to implement some code to make the program function like 
+ the ‘sticky moon’ program we saw in class. The project is comprised of three .m script files that
+ are required for operation: a simulation file, an animation file, and a script file containing the 
+ ephemeris matrices that exports them as a .mat file. Each row in an ephemeris matrix corresponds 
+ to a different gravitational body; the columns of the matrix correspond to an initial x-position, y-position, 
+ z-position, x-velocity, y-velocity, z-velocity, and mass of the body respectively. I derived the 
+ initial data (somewhat painstakingly) from NASA's JPL ephemeris generator. The ephemeris matrices are loaded into the 
+ simulation script file. The program calculates the position, velocity, net gravitational force, and acceleration of the 
+ bodies in discrete time steps (determined by delta_t). The calculated sequence of position data is then stored
+ in a binary file (‘pos_sequence.bin’). The animation script can then be used to load the binary file and plot
+ the position data to see the simulation of planetary motion. Using the binary file and ephemeris matrices is really
+what makes this program able to run at a large scale. One could load up an ephemeris matrix with hundreds (or possibly 
+thousands) of bodies, set the simulation run-time within the program for many years, and simply let the computer run until the 
+simulation is complete. One other feature of the program that is very useful for large-scale long-term simulations is the ability 
+to change the ‘resolution’ of the simulation. Changing the resolution value affects the ‘speed’ of the animation while preserving the 
+size of the discrete time steps determined by delta_t. This is useful if one wants to model something like the formation of a galaxy that 
+might take thousands (millions?) of years to come together. While the code is functional, I think there could be some 
+improvements on processing efficiency. The only thing I could think to do at this point is to somehow take the negative of the calculated
+force value and assign it to the body it was calculated against. This would cut force calculations in half, but I couldn’t quite figure out
+how to get this done just yet. I’m sure there are other ways to improve efficiency as well, but I would need to do some research to 
+find out. For more information on how to operate the series of programs, see the documentation within the script files. I documented the functionality 
+of all three programs pretty thoroughly. 
